@@ -1,0 +1,172 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #5d2ddf;
+  padding: 0.5rem 1rem;
+  z-index: 1;
+}
+
+.main_header > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.main_header__brand {
+  color: #0e4f1f;
+  text-decoration: none;
+  font-weight: bold;
+  height: 2.5rem;
+  /* width: 20px; */
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.main_header__brand img {
+  height: 100%;
+  /* width: 100%; */
+}
+
+.main_nav {
+  display: inline-block;
+  text-align: right;
+  width: calc(100% - 44px);
+  vertical-align: middle;
+}
+
+.main_nav__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main_nav__item {
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+.main_nav__item a {
+  text-decoration: none;
+  color: #0e4f1f;
+  font-weight: bold;
+  padding: 0.2rem 0;
+}
+
+.main_nav__item a:hover {
+  color: white;
+  border-bottom: 5px solid white;
+}
+
+.main_nav__item__cta a {
+  color: white;
+  background: #1b7eff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.main_nav__item--cta a:hover,
+.main_nav__item--cta a:active,
+.mobile_nav__item--cta a:hover,
+.mobile_nav__item--cta a:active {
+  color: #ff1b68;
+  background: white;
+  border: none;
+}
+
+.footer {
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.title a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.title {
+  margin: 0 0 0 10;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+.description {
+  margin: 4rem 0;
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1000px;
+}
+
+.card {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 400px;
+  height: 300px;
+  overflow: auto;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+.card h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.logo {
+  height: 1em;
+  margin-left: 0.5rem;
+}
