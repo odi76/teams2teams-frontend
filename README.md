@@ -10,11 +10,11 @@ TBD
 
 ### 2.1 Dependencies
 
-This project is a React.js project which needs node.js and npm. 
+This project is a React.js project which needs the [Node v14+ ](https://nodejs.org/) with NPM v5.6+ in order to install and execute the application. 
 
 ### 2.2 Installing
 
-In order to install all packages needed to run react.js applicaiton, run the following command:
+In order to install all npm packages that the application requries because of applied needed to run react.js applicaiton, run the following command:
 
 ```bash
 npm install
