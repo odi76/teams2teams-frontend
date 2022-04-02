@@ -4,7 +4,6 @@ export default function Home() {
   return (
     <div>
       <h1 className={styles.title}>Welcome to Teams 2 Teams!</h1>
-
       <div className={styles.grid}>
         <a href="" className={styles.card}>
           <h2>Topic #1 &rarr;</h2>

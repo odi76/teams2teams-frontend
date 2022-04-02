@@ -10,11 +10,11 @@ TBD
 
 ### 2.1 Dependencies
 
-This project is a React.js project which needs the [Node v14+ ](https://nodejs.org/) with NPM v5.6+ in order to install and execute the application. 
+This is a React.js project which needs the [Node v14+ ](https://nodejs.org/) with NPM v5.6+ in order to install and run the application. 
 
 ### 2.2 Installing
 
-In order to install all npm packages that the application requries because of applied needed to run react.js applicaiton, run the following command:
+In order to install all npm packages that the application requires to run react.js applicaiton, execute the following command:
 
 ```bash
 npm install
@@ -28,7 +28,7 @@ npm install
 npm run dev
 ```
 
-1) Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2) Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## 3. Authors
 
