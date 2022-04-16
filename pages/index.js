@@ -1,10 +1,7 @@
 import { Typography } from "@mui/material";
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-
-import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
@@ -14,8 +11,8 @@ export default function Home() {
         </Typography>
         <Grid container spacing={4}>
           <Grid item lg={6}>
-            <Paper component="section">
-              <Typography variant="h4" paragraph>
+            <Paper component="section" sx={{ p: 2 }}>
+              <Typography variant="h4" paragraph >
                 Topic #1
               </Typography>
               <Typography paragraph height={150}>
@@ -27,7 +24,7 @@ export default function Home() {
             </Paper>
           </Grid>
           <Grid item lg={6}>
-            <Paper component="section">
+            <Paper component="section" sx={{ p: 2 }}>
               <Typography variant="h4" paragraph>
                 Topic #2
               </Typography>
@@ -43,7 +40,7 @@ export default function Home() {
             </Paper>
           </Grid>
           <Grid item lg={6}>
-            <Paper component="section">
+            <Paper component="section" sx={{ p: 2 }}>
               <Typography variant="h4" paragraph>
                 Topic #3
               </Typography>
@@ -58,7 +55,7 @@ export default function Home() {
             </Paper>
           </Grid>
           <Grid item lg={6}>
-            <Paper>
+            <Paper component="section" sx={{ p: 2 }}>
               <Typography variant="h4" paragraph>
                 Topic #4
               </Typography>

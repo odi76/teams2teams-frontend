@@ -1,8 +1,19 @@
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { useRef } from 'react';
+import { useRef } from "react";
 
-import styles from "./SignInForm.module.css";
+import {
+  Avatar,
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Link,
+  Grid,
+  Typography,
+  TextField,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import { authActions } from "../../stores/auth";
 
@@ -13,29 +24,74 @@ function SignInForm() {
 
   function submitHandler(event) {
     event.preventDefault();
-    dispatch(authActions.signIn(userNameRef.current.value));
-    router.replace('/');
+    const data = new FormData(event.currentTarget);
+    dispatch(authActions.signIn(data.get("email")));
+    router.replace("/");
   }
 
   return (
-    <section className={styles.auth}>
-      <h1>Sign in</h1>
-      <form onSubmit={submitHandler}>
-        <div className={styles.control}>
-          <label htmlFor="userName">User mame:</label>
-          <input id="userName" type="text" ref={userNameRef}/>
-        </div>
-        <div className={styles.control}>
-          <label htmlFor="userPwd">Password:</label>
-          <input id="userPwd" type="password" />
-        </div>
-        <div className={styles.actions}>
-          <button type="submit" className={styles.toggle}>
-            Sign in
-          </button>
-        </div>
-      </form>
-    </section>
+    <Box
+      sx={{
+        my: 8,
+        mx: 4,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        <LockOutlinedIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Sign in
+      </Typography>
+      <Box component="form" noValidate onSubmit={submitHandler} sx={{ mt: 1 }}>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="Email Address"
+          name="email"
+          autoComplete="email"
+          autoFocus
+        />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+        />
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label="Remember me"
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Sign In
+        </Button>
+        <Grid container>
+          <Grid item xs>
+            <Link href="#" variant="body2">
+              Forgot password?
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link href="#" variant="body2">
+              {"Don't have an account? Sign Up"}
+            </Link>
+          </Grid>
+        </Grid>
+      </Box>
+    </Box>
   );
 }
 
