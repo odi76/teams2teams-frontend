@@ -1,4 +1,4 @@
-# Teams-2-Teams FE 
+# Teams-2-Teams FE
 
 TBD
 
@@ -10,7 +10,7 @@ TBD
 
 ### 2.1 Dependencies
 
-This is a React.js project which needs the [Node v14+ ](https://nodejs.org/) with NPM v5.6+ in order to install and run the application. 
+This is a React.js project which needs the [Node v14+](https://nodejs.org/) with NPM v5.6+ in order to install and run the application.
 
 ### 2.2 Installing
 
@@ -24,9 +24,9 @@ npm install
 
 1) First, run the development server:
 
-```bash
-npm run dev
-```
+    ```bash
+    npm run dev
+    ```
 
 2) Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -37,7 +37,7 @@ Istvan Danyi
 ## 4. Version History
 
 * 1.0 (in progress)
-    * Initial Release
+  * Initial Release
 
 ## 5. License
 
