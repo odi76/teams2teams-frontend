@@ -15,39 +15,43 @@ import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-import ApiClient from '../../src/api/src/ApiClient';
-import HCApi from '../../src/api/src/api/HealthcheckApi';
-import Pong from '../../src/api/src/model/Pong';
+import ApiClient from "../../src/api/src/ApiClient";
+import AuthApi from "../../src/api/src/api/AuthenticationApi";
+import HCApi from "../../src/api/src/api/HealthcheckApi";
+import Pong from "../../src/api/src/model/Pong";
 
 import styles from "./MainNavigation.module.css";
 
 import { authActions } from "../../stores/auth";
 import { Box } from "@mui/system";
 
+var restApiClient = ApiClient.instance;
+var authApi = new AuthApi(restApiClient);
+
 function MainNavigation() {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const userId = useSelector((state) => state.auth.userId);
+  const sessionId = useSelector((state) => state.auth.sessionId);
 
   var restApiClient = ApiClient.instance;
-  var healthcheckApi = new HCApi( restApiClient );
+  var healthcheckApi = new HCApi(restApiClient);
 
   const [anchorElProfileButton, setAnchorElProfileButton] =
     React.useState(null);
 
   const handlePingBE = (event) => {
-
-    const callback = function(error, payload, response) {
+    const callback = function (error, payload, response) {
       if (error) {
         console.error(error);
-        alert('Ping request: ' + JSON.stringify(error));
+        alert("Ping request: " + JSON.stringify(error));
       } else {
-        alert('Ping response: ' + payload.pong);
+        alert("Ping response: " + payload.pong);
       }
     };
-    healthcheckApi.ping(callback); 
+    healthcheckApi.ping(callback);
   };
-  
+
   const handleOpenProfileMenu = (event) => {
     setAnchorElProfileButton(event.currentTarget);
   };
@@ -58,7 +62,17 @@ function MainNavigation() {
 
   const signOutHandler = () => {
     setAnchorElProfileButton(null);
-    dispatch(authActions.signOut());
+
+    const callback = function (error, payload, response) {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log("Logout REST API was called successfully.");
+        dispatch(authActions.signOut());
+      }
+    };
+
+    authApi.logout(sessionId, callback);
   };
 
   return (
@@ -86,12 +100,21 @@ function MainNavigation() {
               Sign in
             </Button>
           )}
+          {!isAuth && (
+            <Button href="/sign_up" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+              Sign up
+            </Button>
+          )}
           {isAuth && (
             <IconButton onClick={handleOpenProfileMenu} sx={{ p: 0 }}>
               <Avatar alt={`${userId}`} src="" />
             </IconButton>
           )}
-          <Button onClick={handlePingBE} variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+          <Button
+            onClick={handlePingBE}
+            variant="outlined"
+            sx={{ my: 1, mx: 1.5 }}
+          >
             Ping BE
           </Button>
           <Menu
@@ -110,7 +133,10 @@ function MainNavigation() {
             open={Boolean(anchorElProfileButton)}
             onClose={handleCloseProfileMenu}
           >
-              <Typography align="center" fontWeight='bold' paragraph> {`${userId}`}</Typography>
+            <Typography align="center" fontWeight="bold" paragraph>
+              {" "}
+              {`${userId}`}
+            </Typography>
             <MenuItem onClick={signOutHandler}>
               <Typography>Sign out</Typography>
             </MenuItem>

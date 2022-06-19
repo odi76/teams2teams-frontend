@@ -18,7 +18,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import ApiClient from '../../src/api/src/ApiClient';
 import AuthApi from '../../src/api/src/api/AuthenticationApi';
 import LoginInput from '../../src/api/src/model/LoginInput';
-import LoginOutput from '../../src/api/src/model/LoginOutput';
+// import LoginOutput from '../../src/api/src/model/LoginOutput';
 
 import { authActions } from "../../stores/auth";
 
@@ -43,15 +43,14 @@ function SignInForm() {
         console.error(error);
         authActions.signInFinished({
           isSuccessfull: false,
-          token: null
+          sessionId: null
         })
       } else {
-        console.log('API called successfully.');
-
+        console.log("Login REST API was called successfully.");
         dispatch(
           authActions.signInFinished({
             isSuccessfull: true,
-            token: payload.sessionId
+            sessionId: payload.sessionId
           }));
   
         // A böngésző átirányítása a főoldalra.
@@ -60,9 +59,7 @@ function SignInForm() {
       }
     };
     const loginInput = new LoginInput( data.get("email"), data.get("password") );
-    console.log('Login API is being invoked.');
     authApi.login(loginInput, callback);
-    console.log('Login API has been invoked.');
   
 /*     fetch()
       .then( async (res) => {
@@ -160,7 +157,7 @@ function SignInForm() {
             </Link>
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2">
+            <Link href="/sign_up" variant="body2">
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>

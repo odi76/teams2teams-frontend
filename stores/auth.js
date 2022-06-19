@@ -4,13 +4,25 @@ const initialAuthState = {
   isAuthenticated: false,
   isInProgress: false,
   userId: null,
-  token: null
+  sessionId: null
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState: initialAuthState,
   reducers: {
+    signUpStarted(state, action) {
+      state.isAuthenticated = false;
+      state.isInProgress = true;
+      state.userId = action.payload;
+      state.sessionId = null;
+    },
+    signUpFinished(state, action) {
+      state.isAuthenticated = action.payload.isSuccessfull;
+      state.isInProgress = false;
+      state.userId = null;
+      state.sessionId = null;
+    },
     signInStarted(state, action) {
       state.isAuthenticated = false;
       state.isInProgress = true;
@@ -18,14 +30,14 @@ const authSlice = createSlice({
     },
     signInFinished(state, action) {
       state.isAuthenticated = action.payload.isSuccessfull;
-      state.isInProgress = true;
-      state.token = action.payload.token;
+      state.isInProgress = false;
+      state.sessionId = action.payload.sessionId;
     },
     signOut(state) {
       state.isAuthenticated = false;
       state.isInProgress = false;
       state.userId = null;
-      state.token = null;
+      state.sessionId = null;
     },
   },
 });
