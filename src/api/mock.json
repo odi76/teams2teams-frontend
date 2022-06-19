@@ -1,0 +1,22 @@
+{
+  "ping": {
+    "200": {
+      "pong": "pong"
+    }
+  },
+  "registrate": {
+    "200": "Successfully registration",
+    "500": {}
+  },
+  "login": {
+    "200": {
+      "sessionId": "sessionId"
+    },
+    "404": "User or password not found",
+    "500": {}
+  },
+  "logout": {
+    "200": "Successfully logout and remove session id",
+    "500": {}
+  }
+}

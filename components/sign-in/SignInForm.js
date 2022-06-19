@@ -15,7 +15,16 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
+import ApiClient from '../../src/api/src/ApiClient';
+import AuthApi from '../../src/api/src/api/AuthenticationApi';
+import LoginInput from '../../src/api/src/model/LoginInput';
+import LoginOutput from '../../src/api/src/model/LoginOutput';
+
 import { authActions } from "../../stores/auth";
+
+// A generált REST API client SDK elérhetőségéhez
+var restApiClient = ApiClient.instance;
+var authApi = new AuthApi( restApiClient );
 
 function SignInForm() {
   const router = useRouter();
@@ -25,8 +34,74 @@ function SignInForm() {
   function submitHandler(event) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    dispatch(authActions.signIn(data.get("email")));
-    router.replace("/");
+
+    //A várakozási állapot beállítása.
+    dispatch(authActions.signInStarted(data.get("email")));
+
+    const callback = function(error, payload, response) {
+      if (error) {
+        console.error(error);
+        authActions.signInFinished({
+          isSuccessfull: false,
+          token: null
+        })
+      } else {
+        console.log('API called successfully.');
+
+        dispatch(
+          authActions.signInFinished({
+            isSuccessfull: true,
+            token: payload.sessionId
+          }));
+  
+        // A böngésző átirányítása a főoldalra.
+        router.replace("/");
+ 
+      }
+    };
+    const loginInput = new LoginInput( data.get("email"), data.get("password") );
+    console.log('Login API is being invoked.');
+    authApi.login(loginInput, callback);
+    console.log('Login API has been invoked.');
+  
+/*     fetch()
+      .then( async (res) => {
+
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = "Authentication failed!";
+            if (data && data.error && data.error.message) {
+               errorMessage = data.error.message;
+             }
+
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then( (data) => {
+        // A várakozási állapot feloldása és a token eltárolása állapotváltozóként.
+        dispatch(
+          authActions.signInFinished({
+            isSuccessfull: true,
+            token: null
+          })
+        );
+        
+        // A böngésző átirányítása a főoldalra.
+        router.replace("/");
+      })
+      .catch((err) => {
+        //REST API hívás hibaesetének kezelése
+        dispatch(
+          authActions.signInFinished({
+            isSuccessfull: false,
+            token: null
+          })
+        );
+      }); */
+
   }
 
   return (

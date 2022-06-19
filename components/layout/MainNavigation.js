@@ -2,6 +2,8 @@ import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
+import Image from "next/image";
+
 import GlobalStyles from "@mui/material/GlobalStyles";
 import CssBaseline from "@mui/material/CssBaseline";
 import AppBar from "@mui/material/AppBar";
@@ -13,7 +15,10 @@ import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-import Image from "next/image";
+import ApiClient from '../../src/api/src/ApiClient';
+import HCApi from '../../src/api/src/api/HealthcheckApi';
+import Pong from '../../src/api/src/model/Pong';
+
 import styles from "./MainNavigation.module.css";
 
 import { authActions } from "../../stores/auth";
@@ -24,9 +29,25 @@ function MainNavigation() {
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const userId = useSelector((state) => state.auth.userId);
 
+  var restApiClient = ApiClient.instance;
+  var healthcheckApi = new HCApi( restApiClient );
+
   const [anchorElProfileButton, setAnchorElProfileButton] =
     React.useState(null);
 
+  const handlePingBE = (event) => {
+
+    const callback = function(error, payload, response) {
+      if (error) {
+        console.error(error);
+        alert('Ping request: ' + JSON.stringify(error));
+      } else {
+        alert('Ping response: ' + payload.pong);
+      }
+    };
+    healthcheckApi.ping(callback); 
+  };
+  
   const handleOpenProfileMenu = (event) => {
     setAnchorElProfileButton(event.currentTarget);
   };
@@ -70,6 +91,9 @@ function MainNavigation() {
               <Avatar alt={`${userId}`} src="" />
             </IconButton>
           )}
+          <Button onClick={handlePingBE} variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+            Ping BE
+          </Button>
           <Menu
             sx={{ mt: "45px" }}
             id="profile-menu"
