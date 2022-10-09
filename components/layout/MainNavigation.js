@@ -15,10 +15,10 @@ import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-import ApiClient from "../../src/api/src/ApiClient";
-import AuthApi from "../../src/api/src/api/AuthenticationApi";
-import HCApi from "../../src/api/src/api/HealthcheckApi";
-import Pong from "../../src/api/src/model/Pong";
+import ApiClient from "../../rest-api/src/ApiClient";
+import AuthApi from "../../rest-api/src/api/AuthenticationApi";
+import HCApi from "../../rest-api/src/api/HealthcheckApi";
+import Pong from "../../rest-api/src/model/Pong";
 
 import styles from "./MainNavigation.module.css";
 

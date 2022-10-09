@@ -15,10 +15,10 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-import ApiClient from '../../src/api/src/ApiClient';
-import AuthApi from '../../src/api/src/api/AuthenticationApi';
-import LoginInput from '../../src/api/src/model/LoginInput';
-// import LoginOutput from '../../src/api/src/model/LoginOutput';
+import ApiClient from '../../rest-api/src/ApiClient';
+import AuthApi from '../../rest-api/src/api/AuthenticationApi';
+import LoginInput from '../../rest-api/src/model/LoginInput';
+// import LoginOutput from '../../rest-api/src/model/LoginOutput';
 
 import { authActions } from "../../stores/auth";
 

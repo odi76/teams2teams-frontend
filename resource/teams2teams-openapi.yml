@@ -1,11 +1,12 @@
+---
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: Teams2Teams API prototype
+  title: teams2teams API
   description: This is a simple API in case of try the login functions out.
 
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:8080/t2t
 
 tags:
   - name: Healthcheck
@@ -152,3 +153,4 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+

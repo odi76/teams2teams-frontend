@@ -35,4 +35,4 @@ yarn-error.log*
 .vercel
 
 # generated OpenAPI Client SDK
-api/rest
+/rest-api

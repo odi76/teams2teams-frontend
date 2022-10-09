@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "npm run generate:api-json",
+    "postinstall": "npm run generate:api",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate:api-json": "generate-api -i ./resource/teams2teams-openapi.json -g javascript -o ./src/api"
+    "generate:api": "openapi-generator-cli generate -i ./resource/teams2teams-openapi.yml -g javascript -o ./rest-api --global-property models"
   },
   "dependencies": {
     "@emotion/react": "^11.8.2",
@@ -17,10 +17,10 @@
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.3",
     "@reduxjs/toolkit": "^1.8.0",
-    "next": "12.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-scripts": "^2.1.8",
+    "next": "^12.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^5.0.0",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
     "querystring": "^0.2.1",
@@ -29,6 +29,6 @@
   "devDependencies": {
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
-    "swagger-codegen-openapi": "^1.0.7"
+    "@openapitools/openapi-generator-cli": "^2.5.0"
   }
 }
